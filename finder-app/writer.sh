@@ -5,17 +5,23 @@ writestr=$2
 # Check if arguments are provided
 if [ -z "$writefile" ] || [ -z "$writestr" ]; then
     echo "Error: Missing arguments"
-    echo "Usage: $0 <writefile> <writestr>"
-    exit 1
-elif
-    [ -e "$writefile" ]; then
-    echo "Error: $writefile already exists"
-    exit 1
-elif
-    [ ! -d "$(dirname "$writefile")" ]; then
-    echo "Error: Directory for $writefile does not exist, creating it"
-    dirpath=$(dirname "$writefile")
-    mkdir -p "$dirpath"
-    echo "$writestr" > "$writefile"
     exit 1
 fi
+
+# Extract directory path
+dirpath=$(dirname "$writefile")
+
+# Create directory path if it does not exist
+mkdir -p "$dirpath"
+if [ $? -ne 0 ]; then
+    echo "Error: Could not create directory path"
+    exit 1
+fi
+
+# Write to file (overwrite if exists)
+echo "$writestr" > "$writefile"
+if [ $? -ne 0 ]; then
+    echo "Error: Could not create or write to file"
+    exit 1
+fi
+exit 0
