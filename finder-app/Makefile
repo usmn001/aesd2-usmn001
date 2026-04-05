@@ -67,10 +67,10 @@ compile-all : $(OBJS)
 
 # Compile all object files and link into a final executable , Produce map file of final build and Provide Information Of The Data Section Sizes.
 .PHONY : build
-build : $(TARGET).out
+build : $(TARGET)
          
 
-$(TARGET).out : $(OBJS)
+$(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $@
 	size $@
 
