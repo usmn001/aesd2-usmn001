@@ -83,7 +83,7 @@ print:
 # Cleaning All Generated Files
 .PHONY : clean
 clean : 
-	rm -f $(OBJS) $(ASM) $(PREP) $(DEP) $(TARGET).out $(TARGET).map
+	rm -f $(OBJS) $(ASM) $(PREP) $(DEP) $(TARGET) $(TARGET).map
 			
 
 
