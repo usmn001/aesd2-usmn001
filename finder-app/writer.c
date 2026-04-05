@@ -12,7 +12,11 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Usage: %s <filename> <writestr>\n", argv[0]);
         return EXIT_FAILURE;
     }
-    
+    else if(argv[2] == NULL)
+    {
+        fprintf(stderr, "No Write String Specified\n");
+        return EXIT_FAILURE;
+    }
     char *filename = argv[1];
     char *writestr = argv[2];
     int fd  = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0700);
